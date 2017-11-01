@@ -6,8 +6,8 @@
 ##########################################
 
 # File Configurations
-input_file_path = "../../text_files/"
-output_file_path = "../../text_files_clean/"
+input_file_path = "../../caches/text_files/"
+output_file_path = "../../caches/text_files_clean/"
 stopwords_location = ""
 save_log = True
 
