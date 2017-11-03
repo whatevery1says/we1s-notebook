@@ -11,11 +11,11 @@ text_files_clean_dir  = 'caches/text_files_clean'
 
 
 ## data
-metadata_csv_files = ['../../../read/metadata/la_times-2010-h-master-clean.csv', \
-                      '../../../read/metadata/la_times-2011-h-master-clean.csv', \
-                      '../../../read/metadata/la_times-2012-h-master-clean.csv', \
-                      '../../../read/metadata/la_times-2013-h-master-clean.csv',
-                      '../../../read/metadata/la_times-2014-h-master-clean.csv']
+metadata_csv_files = ['../../../../read/metadata/la_times-2010-h-master-clean.csv', \
+                      '../../../../read/metadata/la_times-2011-h-master-clean.csv', \
+                      '../../../../read/metadata/la_times-2012-h-master-clean.csv', \
+                      '../../../../read/metadata/la_times-2013-h-master-clean.csv',
+                      '../../../../read/metadata/la_times-2014-h-master-clean.csv']
 
 ## scripts
 scrub_dir             = 'scripts/scrub'
