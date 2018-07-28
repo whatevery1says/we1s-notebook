@@ -1,9 +1,7 @@
-# deduplicate
-
+#corpus_compare.py
 `corpus_compare.py` is used to identify duplicate or near-duplicate texts in a corpus.
 
-## usage
-
+##Usage
 From the command line:
 
 ```
