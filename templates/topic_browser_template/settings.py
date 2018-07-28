@@ -24,6 +24,7 @@ dedup_name            = 'corpus_compare'
 ## model settings
 model_dir             = 'caches/model'
 model_num_topics      = '50'
+model_random_seed     = '10'
 
 
 ## model resources
