@@ -122,7 +122,7 @@ print(out)
 
 # Save Log File
 if save_log == True:
-    log_file = os.path.join(output_file_path, "log.txt")
+    log_file = os.path.join(output_file_path, "log.log")
     f = open(log_file,'w')
     out = out
     f.write(out)
