@@ -9,7 +9,7 @@
 input_file_path = "../../caches/text_files/"
 output_file_path = "../../caches/text_files_clean/"
 stopwords_location = ""
-save_log = True
+save_log = False
 
 # Options
 options = [
