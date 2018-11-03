@@ -19,7 +19,11 @@ __email__ = "scott.kleinman@csun.edu"
 
 import os, re, codecs, ftfy
 import unicodedata as ud
-from config import *
+try:
+    from scripts.scrub.config import *
+except:
+    from config import *
+
 iterations = len(options)
 
 # Read and scrub files in input directory	
@@ -84,49 +88,50 @@ def scrub(text):
 
     return text
 
-# Initiate
-print("Processing...\n")
-print("Reading "+input_file_path+"\n")
+if __name__ == "__main__":
+    # Initiate
+    print("Processing...\n")
+    print("Reading "+input_file_path+"\n")
 
-# Read and Scrub Files
-readFiles(input_file_path, output_file_path)
+    # Read and Scrub Files
+    readFiles(input_file_path, output_file_path)
 
-# Generate Log String
-out = "Number of iterations: " + str(iterations) + "\n\n"
-for i, item in enumerate(options):
-    values = options[i]["values"]
-    if values == "stopwords":
-        fh = open(stopwords_location, 'r')
-        stoplist = fh.read()
-        fh.close()
-        stoplist = re.sub("\s+", ", ", stoplist)
-        out += "Stopwords Removed: " + stoplist + "\n"
-    else:
-        out += "Iteration: " + str(i+1) + "\n"
-        out += "Find\tReplace\n"
-        for j, value in enumerate(values):
-            out += value["find"] + "\t-->\t" + value["replace"] + "\n"
-    	# Retrieve metadata
-        if len(item) > 1:
-            out += "Metadata:\n"	
-            for k in item:
-                if k != "values":
-                    out += str(k) + ": " + str(options[i][k]) + "\n"
-        out += "\n"
+    # Generate Log String
+    out = "Number of iterations: " + str(iterations) + "\n\n"
+    for i, item in enumerate(options):
+        values = options[i]["values"]
+        if values == "stopwords":
+            fh = open(stopwords_location, 'r')
+            stoplist = fh.read()
+            fh.close()
+            stoplist = re.sub("\s+", ", ", stoplist)
+            out += "Stopwords Removed: " + stoplist + "\n"
+        else:
+            out += "Iteration: " + str(i+1) + "\n"
+            out += "Find\tReplace\n"
+            for j, value in enumerate(values):
+                out += value["find"] + "\t-->\t" + value["replace"] + "\n"
+            # Retrieve metadata
+            if len(item) > 1:
+                out += "Metadata:\n"	
+                for k in item:
+                    if k != "values":
+                        out += str(k) + ": " + str(options[i][k]) + "\n"
+            out += "\n"
 
-    out += "Curly quotes removed.\n"
-    out += "Accents removed.\n"
+        out += "Curly quotes removed.\n"
+        out += "Accents removed.\n"
 
-# Print Log
-print(out)
+    # Print Log
+    print(out)
 
-# Save Log File
-if save_log == True:
-    log_file = os.path.join(output_file_path, "log.log")
-    f = open(log_file,'w')
-    out = out
-    f.write(out)
-    f.close
+    # Save Log File
+    if save_log == True:
+        log_file = os.path.join(output_file_path, "log.log")
+        f = open(log_file,'w')
+        out = out
+        f.write(out)
+        f.close
 
-# Success
-print("Done!\n")
+    # Success
+    print("Done!\n")
