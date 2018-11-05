@@ -49,6 +49,8 @@ import filecmp
 from sklearn.feature_extraction.text import TfidfVectorizer
 ## working with matrices / arrays
 import numpy as np
+## add json file support to fname_to_fstr
+import json
 
 ## INFO
 
@@ -121,14 +123,22 @@ def fname_to_fstr(fname, linebreaks=0, whitespace=0):
     By default filters linebreaks and whitespace.
     """
     with open(fname, "r") as fhandle:
-        if linebreaks == 0 and whitespace == 0:
-            fstr = " ".join(fhandle.read().split())   ## remove linebreaks and reduce whitespace
-        elif linebreaks == 0:
-            fstr = fhandle.read().replace('\n', ' ')  ## remove linebreaks only
-        elif whitespace == 0:
-            fstr = fhandle.read().translate(None, ' \n\t\r')
+        if fname.lower().endswith('.json'):
+            json_decoded = json.loads(fhandle.read())
+            if 'content_scrubbed' in json_decoded:
+                fstr = json_decoded['content_scrubbed']
+            elif 'content' in json_decoded:
+                fstr = json_decoded['content']
+            else:
+                fstr = ''
         else:
             fstr = fhandle.read()
+        if linebreaks == 0 and whitespace == 0:
+            fstr = " ".join(fstr.split())   ## remove linebreaks and reduce whitespace
+        elif linebreaks == 0:
+            fstr = fstr.replace('\n', ' ')  ## remove linebreaks only
+        elif whitespace == 0:
+            fstr = fstr.translate(None, ' \n\t\r')
     fhandle.close()
     return fstr
 
